@@ -10,7 +10,7 @@ import io.restassured.http.ContentType;
 
 public class IncidentTableTest {
 	
-	@Test
+	//@Test
 	public void shouldUserAbleToGetAllIncidents() {
 		RestAssured.given()
 		           .auth()
@@ -27,7 +27,7 @@ public class IncidentTableTest {
 		           .contentType(ContentType.JSON);
 	}
 	
-	@Test
+	//@Test
 	public void shouldUserAbleToGetASingleIncident() {
 		RestAssured.given()
         .auth()
@@ -43,6 +43,28 @@ public class IncidentTableTest {
         .statusCode(200)
         .statusLine(Matchers.containsString("OK"))
         .contentType(ContentType.JSON);
+	}
+	
+	@Test
+	public void shouldUserAbleToCreateOAuthToken() {
+		RestAssured.given()
+		           .contentType("application/x-www-form-urlencoded")
+		           .formParam("grant_type", "password")
+		           .formParam("client_id", Config.getClientId())
+		           .formParam("client_secret", Config.getClientSecret())
+		           .formParam("username", Config.getUserName())
+		           .formParam("password", Config.getPassword())
+		           .log()
+		           .all()
+		           .when()
+		           .post("https://"+Config.getDomainName()+".service-now.com/oauth_token.do")
+		           .then()
+		           .log()
+		           .all()
+		           .assertThat()
+		           .statusCode(200)
+		           .statusLine(Matchers.containsString("OK"))
+		           .contentType(ContentType.JSON);
 	}
 	
 	

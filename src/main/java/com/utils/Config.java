@@ -15,7 +15,7 @@ public class Config {
 		try {
 			properties.load(new FileInputStream(new File("./config.properties")));
 		} catch (FileNotFoundException e) {			
-			e.printStackTrace();
+			throw new RuntimeException("Unable to found \"./config.properties\" file in the root location. Kindly create one.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -31,6 +31,14 @@ public class Config {
 	
 	public static String getDomainName() {
 		return properties.getProperty("sn.domain.name");
+	}
+	
+	public static String getClientId() {
+		return properties.getProperty("sn.oauth.client.id");
+	}
+	
+	public static String getClientSecret() {
+		return properties.getProperty("sn.oauth.client.secret");
 	}
 
 }
