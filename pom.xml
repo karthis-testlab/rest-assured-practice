@@ -28,5 +28,11 @@
 			<artifactId>wiremock</artifactId>
 			<version>3.9.1</version>
 		</dependency>
+		<!-- rest-assured/json-schema-validator-v5.5.0 -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>5.5.0</version>
+		</dependency>
 	</dependencies>
 </project>
