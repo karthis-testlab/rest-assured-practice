@@ -4,3 +4,4 @@
 target/
 test-output/
 config.properties
+src/main/resources/secret.properties
