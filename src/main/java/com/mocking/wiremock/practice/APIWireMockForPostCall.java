@@ -3,6 +3,9 @@ package com.mocking.wiremock.practice;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+
 public class APIWireMockForPostCall {
 
 	public static void main(String[] args) {
@@ -16,6 +19,16 @@ public class APIWireMockForPostCall {
 						  .withBody("{\"name\": \"Dummy\"}")
 						  .withStatus(201)
 						  .withBody("{\"success\": \"OK\", \"code\": 201}")));
+		
+		RestAssured.given()
+		           .header(new Header("Content-Type", "application/json"))
+		           .when()
+		           .body("{\"name\": \"Dummy\"}")
+		           .log().all()
+		           .post("http://localhost:8585/some/endpoint")		           
+		           .then()
+		           .log().all();
+		           
 
 		mockServer.stop();
 	}
