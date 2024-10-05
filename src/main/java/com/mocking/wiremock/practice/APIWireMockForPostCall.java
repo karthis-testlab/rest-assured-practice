@@ -1,5 +1,7 @@
 package com.mocking.wiremock.practice;
 
+import org.hamcrest.Matchers;
+
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
@@ -27,7 +29,10 @@ public class APIWireMockForPostCall {
 		           .log().all()
 		           .post("http://localhost:8585/some/endpoint")		           
 		           .then()
-		           .log().all();
+		           .log().all()
+		           .assertThat()
+		           .statusCode(201)
+		           .statusLine(Matchers.containsString("Created"));
 		           
 
 		mockServer.stop();
