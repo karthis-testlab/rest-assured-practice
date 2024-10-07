@@ -6,6 +6,7 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 
 public class APIWireMockForPostCall {
@@ -32,7 +33,8 @@ public class APIWireMockForPostCall {
 		           .log().all()
 		           .assertThat()
 		           .statusCode(201)
-		           .statusLine(Matchers.containsString("Created"));
+		           .statusLine(Matchers.containsString("Created"))
+		           .contentType(ContentType.JSON);
 		           
 
 		mockServer.stop();
