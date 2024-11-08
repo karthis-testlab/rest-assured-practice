@@ -13,11 +13,12 @@ public class CheckKeyPresence {
 		given()
 		  .when()
 		  .get("/users")
-		  .then()
+		  .then()		 
 		  .assertThat()
-		  .body("data[0]", hasKey("email"));
-	
-
+		  .body("data[0]", hasKey("email"))
+		  .log().all();
+		
+		
 	}
 
 }
