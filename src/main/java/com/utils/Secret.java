@@ -16,7 +16,7 @@ public class Secret {
 			properties.load(new FileInputStream(new File("src/main/resources/secret.properties")));
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(
-					"Unable to found \"/secret.properties.properties\" file in the src/main/resources location. Kindly create one.");
+					"Unable to found 'secret.properties.properties' file in the src/main/resources location. Kindly create one.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
